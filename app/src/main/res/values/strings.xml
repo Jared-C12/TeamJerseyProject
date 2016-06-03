@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">JerseyMaker</string>
+    <string name="title_activity_make_jersey">MakeJersey</string>
+</resources>

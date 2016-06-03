@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DrawingArea"></declare-styleable>
+    <declare-styleable name="DrawingArea_displayText"></declare-styleable>
+    <declare-styleable name="DrawingArea_labelPosition"></declare-styleable>
+</resources>

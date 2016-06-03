@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="example.pbuskell.com.teamjerseyproject.JerseyInformation">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtvwInput"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="15dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtxtUserName"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/txtvwInput"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="UserName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtxtUserNumber"
+        android:layout_below="@+id/edtxtUserName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:layout_alignRight="@+id/edtxtUserName"
+        android:layout_alignEnd="@+id/edtxtUserName"
+        android:hint="Number" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtxtTeamName"
+        android:layout_below="@+id/edtxtUserNumber"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:layout_alignRight="@+id/edtxtUserNumber"
+        android:layout_alignEnd="@+id/edtxtUserNumber"
+        android:hint="TeamName" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/radioGroup"
+        android:layout_below="@+id/txtvwTypeJersey"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shirt"
+            android:id="@+id/rbtnShirt"
+            android:layout_marginLeft = "30dp"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="With Sleeves"
+            android:id="@+id/rbtnSleeves"
+            android:layout_gravity="right"
+            android:layout_marginTop="-30dp"
+            android:layout_marginRight = "30dp"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rbtnTankTop"
+            android:layout_gravity="center_horizontal"
+            android:text="Tank Top" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtvwTypeJersey"
+        android:text="Types of Jersey"
+        android:textSize="20dp"
+        android:layout_below="@+id/edtxtTeamName"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtvwColourJersey"
+        android:text="Choose A Color"
+        android:textSize="20dp"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:text="Make A Jersey!"
+        android:id="@+id/btnMakeJersey"
+        android:onClick="makeJerseyClick"
+        android:layout_alignBottom="@+id/radioGroup2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="35dp" />
+
+    <RadioGroup
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txtvwColourJersey"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/radioGroup2">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="White"
+            android:id="@+id/rbtnWhite" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Black"
+            android:id="@+id/rbtnBlack"
+            android:layout_gravity="center_horizontal" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red"
+            android:id="@+id/rbtnRed" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtvwOutput2"
+        android:layout_above="@+id/btnMakeJersey"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
