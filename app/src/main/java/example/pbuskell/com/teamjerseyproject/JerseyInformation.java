@@ -1,6 +1,11 @@
 package example.pbuskell.com.teamjerseyproject;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.os.AsyncTask;
 import android.preference.EditTextPreference;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +13,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import java.sql.SQLException;
 
 public class JerseyInformation extends AppCompatActivity {
     private String sport;
@@ -74,21 +81,35 @@ public class JerseyInformation extends AppCompatActivity {
         }
         txtvwInput.setText("You selected " + selectedSport + ":");
     }
-    public void makeJerseyClick(View vw){
+
+    public void makeJerseyClick(View vw)
+    {
+        new JerseyTask().execute();
+    }
+
+    public void makeJersey(){
         Intent makeJersey = new Intent(this,MakeJersey.class);
+        JerseyDatabase jerseyDatabase = new JerseyDatabase(this,null,null,0);
+        SQLiteDatabase db = null;
+        String userName;
+        int userNumber;
+        String teamName;
+        ContentValues jerseyValues = new ContentValues();
+
         if(edtxtUserName.getText().length()==0 || edtxtUserNumber.getText().length()==0
                 || edtxtTeamName.getText().length() == 0 || (!rbtnShirt.isChecked()
                 && !rbtnSleeves.isChecked() && !rbtnTankTop.isChecked())|| (!rbtnRed.isChecked()
                 && !rbtnWhite.isChecked() && !rbtnBlack.isChecked())){
-            txtvwOutput2.setText("You must finish the  ");
+
+            txtvwOutput2.setText("You must enter all the values to add an element! ");
+
         }else {
-            //gets the information from the edittexts
-            String userName = edtxtUserName.getText().toString();
-            String userNumber = edtxtUserNumber.getText().toString();
-            String teamName = edtxtTeamName.getText().toString();
+            userName = edtxtUserName.getText().toString();
+            userNumber = Integer.parseInt(edtxtUserNumber.getText().toString());
+            teamName = edtxtTeamName.getText().toString();
             //sends the information to MakeJersey activty
             makeJersey.putExtra("USERNAME", userName);
-            makeJersey.putExtra("USERNUMBER", userNumber);
+            makeJersey.putExtra("USER_NUM", userNumber);
             makeJersey.putExtra("TEAMNAME", teamName);
             // gets the information from the radiobuttons(Types of Jersey)
             if (rbtnShirt.isChecked()) {
@@ -107,7 +128,27 @@ public class JerseyInformation extends AppCompatActivity {
             }else{
                 makeJersey.putExtra("COLORJERSEY","BLACK");
             }
+
+            //sends the information to the database
+            try {
+                db = jerseyDatabase.getWritableDatabase();
+                jerseyValues.put("USERNAME",userName);
+                jerseyValues.put("USER_NUM",userNumber);
+                jerseyValues.put("TEAMNAME",teamName);
+                db.close();
+            }catch(SQLiteException e){
+            }
+
             startActivityForResult(makeJersey, 0);
+        }
+
+    }
+    private class JerseyTask extends AsyncTask<Void,Void,Void>
+    {
+        @Override
+        protected Void doInBackground(Void... params) {
+            makeJersey();
+            return null;
         }
     }
 }

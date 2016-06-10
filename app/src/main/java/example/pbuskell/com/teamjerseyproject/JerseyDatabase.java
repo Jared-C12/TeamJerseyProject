@@ -25,29 +25,28 @@ public class JerseyDatabase extends SQLiteOpenHelper {
 
     }
     private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion){
-        db.execSQL("CREATE TABLE EMPLOYEE (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "NAME TEXT, " +
-                "NUMBER TEXT, " +
-                "EMPLOYEE_NUM INTEGER, " +
-                "WAGE REAL);");
+        db.execSQL("CREATE TABLE JERSEYINFO(_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "USERNAME TEXT, " +
+                "USER_NUM INTEGER, " +
+                "TEAMNAME TEXT);");
     }
 
     public void insertElement(SQLiteDatabase db, ContentValues newContent){
 
-        db.insert("EMPLOYEE", null, newContent);
+        db.insert("JERSEYINFO", null, newContent);
 
     }
 
     public int alterElement(SQLiteDatabase db, ContentValues alteredContent, String where,
                             String[] whereArgs){
 
-        return db.update("EMPLOYEE", alteredContent, where, whereArgs);
+        return db.update("JERSEYINFO", alteredContent, where, whereArgs);
 
     }
 
     public int deleteElement(SQLiteDatabase db, String where, String[] whereArgs){
 
-        return db.delete("EMPLOYEE", where, whereArgs);
+        return db.delete("JERSEYINFO", where, whereArgs);
 
     }
 }

@@ -16,15 +16,35 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/whitejerseyshirt" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
+        android:id="@+id/txtvwName"
+        android:layout_marginTop="82dp"
+        android:textSize="47dp"
+        android:layout_alignTop="@+id/imgvwShirt"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/txtvwNumber"
+        android:textSize="90dp"
+        android:layout_below="@+id/txtvwName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="63dp" />
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/txtvwTeamName"
+        android:textSize="35dp"
+        android:layout_below="@+id/txtvwNumber"
+        android:layout_centerHorizontal="true"
+        android:textStyle="italic" />
 </RelativeLayout>
