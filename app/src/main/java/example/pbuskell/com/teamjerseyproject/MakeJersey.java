@@ -1,7 +1,10 @@
 package example.pbuskell.com.teamjerseyproject;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +18,7 @@ public class MakeJersey extends AppCompatActivity {
     private TextView txtvwName;
     private TextView txtvwNumber;
     private TextView txtvwTeamName;
+    private Button btnCredits;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +27,12 @@ public class MakeJersey extends AppCompatActivity {
         teamName = getIntent().getStringExtra("TEAMNAME");
         typeJersey = getIntent().getStringExtra("TYPEJERSEY");
         colorJersey = getIntent().getStringExtra("COLORJERSEY");
-        userNumber = getIntent().getIntExtra("USER_NUM",0);
+        userNumber = getIntent().getIntExtra("USER_NUM", 0);
         imgvwtTypeJersey = (ImageView)findViewById(R.id.imgvwShirt);
         txtvwName = (TextView)findViewById(R.id.txtvwName);
         txtvwNumber = (TextView)findViewById(R.id.txtvwNumber);
         txtvwTeamName = (TextView)findViewById(R.id.txtvwTeamName);
+        btnCredits = (Button)findViewById(R.id.btnCredits);
 
         //checks which type and color of jersey the user selected
         if(typeJersey.equals("SHIRT")){
@@ -66,6 +71,22 @@ public class MakeJersey extends AppCompatActivity {
             }
         }
         else{
+            if(colorJersey.equals("WHITE")) {
+                imgvwtTypeJersey.setImageResource(getResources().getIdentifier("tanktopjerseywhite", "drawable", MakeJersey.this.getPackageName()));
+                txtvwName.setTextColor(Color.BLACK);
+                txtvwTeamName.setTextColor(Color.BLACK);
+                txtvwNumber.setTextColor(Color.BLACK);
+            }else if(colorJersey.equals("RED")){
+                imgvwtTypeJersey.setImageResource(getResources().getIdentifier("tanktopjerseyred", "drawable", MakeJersey.this.getPackageName()));
+                txtvwName.setTextColor(Color.BLACK);
+                txtvwTeamName.setTextColor(Color.BLACK);
+                txtvwNumber.setTextColor(Color.BLACK);
+            }else{
+                imgvwtTypeJersey.setImageResource(getResources().getIdentifier("tanktopjerseyblack", "drawable", MakeJersey.this.getPackageName()));
+                txtvwName.setTextColor(Color.WHITE);
+                txtvwTeamName.setTextColor(Color.WHITE);
+                txtvwNumber.setTextColor(Color.WHITE);
+            }
 
         }
 
@@ -73,6 +94,9 @@ public class MakeJersey extends AppCompatActivity {
         txtvwName.setText(userName);
         txtvwTeamName.setText(teamName);
         txtvwNumber.setText(userNumber + "");
-
+    }
+    public void creditClick(View vw){
+        Intent seeCredits = new Intent(this,CreditActivity.class);
+        startActivityForResult(seeCredits, 0);
     }
 }

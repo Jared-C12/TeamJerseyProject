@@ -84,7 +84,17 @@ public class JerseyInformation extends AppCompatActivity {
 
     public void makeJerseyClick(View vw)
     {
-        new JerseyTask().execute();
+        if(edtxtUserName.getText().length()==0 || edtxtUserNumber.getText().length()==0
+                || edtxtTeamName.getText().length() == 0 || (!rbtnShirt.isChecked()
+                && !rbtnSleeves.isChecked() && !rbtnTankTop.isChecked())|| (!rbtnRed.isChecked()
+                && !rbtnWhite.isChecked() && !rbtnBlack.isChecked())){
+
+            txtvwOutput2.setText("You must enter all the values to add an element! ");
+
+        }else{
+            new JerseyTask().execute();
+        }
+
     }
 
     public void makeJersey(){
@@ -96,52 +106,41 @@ public class JerseyInformation extends AppCompatActivity {
         String teamName;
         ContentValues jerseyValues = new ContentValues();
 
-        if(edtxtUserName.getText().length()==0 || edtxtUserNumber.getText().length()==0
-                || edtxtTeamName.getText().length() == 0 || (!rbtnShirt.isChecked()
-                && !rbtnSleeves.isChecked() && !rbtnTankTop.isChecked())|| (!rbtnRed.isChecked()
-                && !rbtnWhite.isChecked() && !rbtnBlack.isChecked())){
-
-            txtvwOutput2.setText("You must enter all the values to add an element! ");
-
-        }else {
-            userName = edtxtUserName.getText().toString();
-            userNumber = Integer.parseInt(edtxtUserNumber.getText().toString());
-            teamName = edtxtTeamName.getText().toString();
-            //sends the information to MakeJersey activty
-            makeJersey.putExtra("USERNAME", userName);
-            makeJersey.putExtra("USER_NUM", userNumber);
-            makeJersey.putExtra("TEAMNAME", teamName);
-            // gets the information from the radiobuttons(Types of Jersey)
-            if (rbtnShirt.isChecked()) {
-                makeJersey.putExtra("TYPEJERSEY", "SHIRT");
-            } else if (rbtnSleeves.isChecked()) {
-                makeJersey.putExtra("TYPEJERSEY", "SLEEVES");
-            } else {
-                makeJersey.putExtra("TYPEJERSEY", "TANKTOP");
-            }
-            //gets the information from the radiobuttons(Color of Jersey)
-            if(rbtnRed.isChecked()){
-                makeJersey.putExtra("COLORJERSEY","RED");
-            }
-            else if(rbtnWhite.isChecked()){
-                makeJersey.putExtra("COLORJERSEY","WHITE");
-            }else{
-                makeJersey.putExtra("COLORJERSEY","BLACK");
-            }
-
-            //sends the information to the database
-            try {
-                db = jerseyDatabase.getWritableDatabase();
-                jerseyValues.put("USERNAME",userName);
-                jerseyValues.put("USER_NUM",userNumber);
-                jerseyValues.put("TEAMNAME",teamName);
-                db.close();
-            }catch(SQLiteException e){
-            }
-
-            startActivityForResult(makeJersey, 0);
+        userName = edtxtUserName.getText().toString();
+        userNumber = Integer.parseInt(edtxtUserNumber.getText().toString());
+        teamName = edtxtTeamName.getText().toString();
+        //sends the information to MakeJersey activty
+        makeJersey.putExtra("USERNAME", userName);
+        makeJersey.putExtra("USER_NUM", userNumber);
+        makeJersey.putExtra("TEAMNAME", teamName);
+        // gets the information from the radiobuttons(Types of Jersey)
+        if (rbtnShirt.isChecked()) {
+            makeJersey.putExtra("TYPEJERSEY", "SHIRT");
+        } else if (rbtnSleeves.isChecked()) {
+            makeJersey.putExtra("TYPEJERSEY", "SLEEVES");
+        } else {
+            makeJersey.putExtra("TYPEJERSEY", "TANKTOP");
+        }
+        //gets the information from the radiobuttons(Color of Jersey)
+        if(rbtnRed.isChecked()){
+            makeJersey.putExtra("COLORJERSEY","RED");
+        }
+        else if(rbtnWhite.isChecked()){
+            makeJersey.putExtra("COLORJERSEY","WHITE");
+        }else{
+            makeJersey.putExtra("COLORJERSEY","BLACK");
         }
 
+        //sends the information to the database
+        try {
+            db = jerseyDatabase.getWritableDatabase();
+            jerseyValues.put("USERNAME",userName);
+            jerseyValues.put("USER_NUM",userNumber);
+            jerseyValues.put("TEAMNAME",teamName);
+            db.close();
+        }catch(SQLiteException e){
+        }
+        startActivityForResult(makeJersey, 0);
     }
     private class JerseyTask extends AsyncTask<Void,Void,Void>
     {

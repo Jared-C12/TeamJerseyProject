@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".JerseyInformation" />
-        <activity android:name=".MakeJersey"></activity>
+        <activity android:name=".MakeJersey" />
+        <activity android:name=".CreditActivity"></activity>
     </application>
 
 </manifest>
